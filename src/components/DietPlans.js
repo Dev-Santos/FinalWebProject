@@ -38,7 +38,7 @@ const DietPage = () => {
                                 <p>brand = {recipe.food.brand}</p>
                                 <img src={recipe.food.image} alt="..."></img>
                                 <p>category = {recipe.food.category}</p>
-                                <p>catLabel = {recipe.food.categoryLabel}</p>
+                                <p>categoryLabel = {recipe.food.categoryLabel}</p>
                                 {/* <p>nutrients = {recipe.food.nutrients}</p> */}
                             </div>
                             // />
