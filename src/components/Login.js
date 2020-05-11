@@ -8,4 +8,4 @@ class Login extends React.Component {
     }
 }
 
-export defualt login;
+export default login;
