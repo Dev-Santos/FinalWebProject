@@ -1,0 +1,51 @@
+.recipes{
+    border-radius: 6px;
+    box-shadow: 0px 5px 20px rgb(71, 71, 71);
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background: white;
+    /* align-items: center; */
+    /* max-width: 300px; */
+    padding: 10px;
+}
+
+.recipes button {
+    align-items: center;
+    background-color: chartreuse;
+    max-height: 40px;
+    position: relative;
+}
+
+.recipes img {
+    align-items: center;
+    width: 100px;
+    padding-left: auto;
+    padding: 20px auto;
+    background-color: chartreuse;
+}
+
+.search-form {
+    min-height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-bar {
+    width: 50%;
+    border: none;
+    padding: 10px;
+}
+
+.search-button {
+    background: lightcoral;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+}
+
+.HomePage {
+    background-color: #9266ff;
+}
