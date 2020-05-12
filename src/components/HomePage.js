@@ -15,7 +15,7 @@ const HomePage = () => {
     useEffect( () => {
       getRecipes();
     }, [query]);
-  
+ 
     const getRecipes = async () => {
       const response = await fetch(`https://api.edamam.com/search?q=${query}&app_id=${APP_ID}&app_key=${APP_KEY}`);
       const data = await response.json();
@@ -32,6 +32,10 @@ const HomePage = () => {
       setQuery(search);
       setSearch('');
     };
+
+    const addRecipe = () => {
+      console.log('This is working!!!!');
+    }
   
     return (    
       <div className="HomePage">
@@ -42,16 +46,19 @@ const HomePage = () => {
                         <input placeholder="Search for any recipe..." className="search-bar" type="text" value={search} onChange={updateSearch} />
                         <button className="search-button" type="submit">Search</button>
                     </form>     
-                    <div className="recipes">
-                    {recipes.map((recipe, index) => (
-                        <Recipe 
-                        key={index}
-                        title={recipe.recipe.label} 
-                        calories={recipe.recipe.calories} 
-                        image={recipe.recipe.image}
-                        ingredients={recipe.recipe.ingredients}
-                        />
-                    ))}                    
+                    <div className="">
+                      {recipes.map((recipe, index) => (
+                          <div className="recipes">
+                            <Recipe 
+                              key={index}
+                              title={recipe.recipe.label} 
+                              calories={recipe.recipe.calories} 
+                              image={recipe.recipe.image}
+                              ingredients={recipe.recipe.ingredients}
+                            />
+                            <button>Add Recipe</button>
+                          </div>
+                      ))}
                     </div>
                 </div>
                 <div className="col-md-3 col-sm-4 col-xs-4">

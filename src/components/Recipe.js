@@ -2,7 +2,7 @@ import React from 'react';
 import style from '../css/recipe.module.css';
 
 
-const Recipe = ({title, calories, image, ingredients}) => {
+const Recipe = ({title, calories, image, ingredients, addRecipe}) => {
     return (
         <div className={style.recipe}>
             <h1 className={style.titleFont}>{title}</h1>
@@ -14,7 +14,7 @@ const Recipe = ({title, calories, image, ingredients}) => {
             </ol>
             {/* <p>Calories: {calories.toFixed(0)}</p> */}
             <img className={style.image} src={image} alt="" />
-            <button className={style.buttonPos}>Save Recipe</button>
+            {/* <button className={style.buttonPos}>Save Recipe</button> */}
         </div>
     );
 }

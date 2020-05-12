@@ -1,43 +1,32 @@
 const express = require('express');
-const mongodb = require('mongodb');
 const objectId = require('mongodb').ObjectID;
 const mongoose = require('mongoose');
-const assert = require('assert');
 
 const router = express.Router();
-const mongo_url = 'mongodb+srv://Santos:Password1@webprojdb-9wiic.mongodb.net/test?retryWrites=true&w=majority';
-const url = 'mongodb://localhost:27017/notepadItems';
+
 const notes = require('../model/notes');
 
+const db = mongoose.connection;
+console.log('Database info: ');
 
-//Back-end routes
+
+//[Back-end routes]
+
+//Returns data from mongodb to fill checklist
 router.get("/", (req, res)=>{
 
     notes.find({ })
         .then((data) => {
             console.log('Data: ', data);
-            res.json(data);
+            res.status(200).json(data);
         })
         .catch((error) => {
             console.log('error: ', error)
         });    
 });
 
-// router.get("/:id", (req, res)=>{
-//     const id = req.params.id;
-    
-//     notes.findById(id)
-//         .then((data) => {
-//             if(!data)
-//                 res.status(404).send({ message: "Not found note with id " + id });
-//             console.log('Data: ', data);
-//             res.json(data);
-//         })
-//         .catch((error) => {
-//             console.log('error: ', error)
-//         });    
-// });
 
+//Used to delete a single note from the mongodb notes
 router.delete('/delete', (req, res) => {
     const { id } = req.body;
     
@@ -46,26 +35,16 @@ router.delete('/delete', (req, res) => {
     notes.deleteOne({"_id": objectId(id)}, (error, data) => {
         console.log("Data found: ");
         if (error) {
-            console.log('error in deleting!');
+            console.log('Error in deleting!');
             throw error;
         } else {
-            console.log('item has been deleted', data);
+            console.log('Item has been deleted', data);
             res.status(204).json(data);
         }
     });
 });
 
-
-    // mongoose.connection.on('connected', function(err, db) {
-    //     assert.equal(null, err);
-    //     db.collection('notes'.find({"_id": new mongodb.ObjectId(id)},
-    //     function(err, result) {
-    //         assert.equal(null, err);
-    //         console.log('Item deleted!!', result);
-    //         db.close();
-    //     }))
-    // })
-
+//Function used to clear all notes made by the user
 router.delete('/deleteAll', (req, res) => {
     // const { id } = req.body;
     const data = req.body;
@@ -73,27 +52,16 @@ router.delete('/deleteAll', (req, res) => {
     notes.deleteAll = (error, data) => {
         console.log("Data found: ", data);
         if (error) {
-            console.log('error in deleting!');
+            console.log('Error in deleting!');
             throw error;
         } else {
-            console.log('item has been deleted', data);
+            console.log('Item has been deleted', data);
             res.status(204).json(data);
         }
     };
 });
 
-// router.get(`/${note}`, (req, res)=>{
-
-//     notes.find({ _id: { $in: } })
-//         .then((data) => {
-//             console.log('Data: ', data);
-//             res.json(data);
-//         })
-//         .catch((error) => {
-//             console.log('error: ', error)
-//         });    
-// });
-
+//Route used to save a note to mongodb
 router.post('/save', (req, res)=>{
     const data = req.body;
 

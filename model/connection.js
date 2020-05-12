@@ -8,9 +8,12 @@ mongoose.connect(mongoDB_URI || 'mongodb://localhost:27017/notepadItems', {
 }, (error)=>{
     if(!error){
         console.log("Successful connection to the database...");
+        // await listDatabases(mongoose);
+        // console
     }else{
         console.log('Error connecting to the database...');
     }
 });
 
-// const Items = require("./listItem.model");
+// const db = mongoose.connection;
+// console.log('Database info: ', db.collections);
